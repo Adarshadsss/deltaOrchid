@@ -59,7 +59,6 @@ public class MatchSystem : MonoBehaviour
             ScoreManager.Instance.AddMatchScore();
             AudioManager.Instance.PlayMatch();
 
-            //CheckGameOver();
         }
         else
         {
@@ -74,14 +73,5 @@ public class MatchSystem : MonoBehaviour
         checkingMatch = false;
     }
 
-    void CheckGameOver()
-    {
-        if (matchedPairs >= totalPairs)
-        {
-            GamePanel.SetActive(false);
-            Gameoverpanel.SetActive(true);
-
-            AudioManager.Instance.PlayGameOver();
-        }
-    }
+   
 }
