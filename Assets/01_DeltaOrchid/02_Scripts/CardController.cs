@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardController : MonoBehaviour
 {
@@ -9,8 +10,15 @@ public class CardController : MonoBehaviour
     [SerializeField] GameObject front;
     [SerializeField] GameObject back;
 
+    [SerializeField] Image frontImage;
+
     bool isFlipped;
     bool isMatched;
+
+    public void SetSprite(Sprite sprite)
+    {
+        frontImage.sprite = sprite;
+    }
 
     public void OnClick()
     {
@@ -28,6 +36,7 @@ public class CardController : MonoBehaviour
         front.SetActive(isFlipped);
         back.SetActive(!isFlipped);
 
+        AudioManager.Instance.PlayFlip();
     }
 
     public void FlipBack()

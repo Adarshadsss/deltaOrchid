@@ -227,6 +227,7 @@ MonoBehaviour:
   cardID: 0
   front: {fileID: 625604450271103354}
   back: {fileID: 6769692123129213054}
+  frontImage: {fileID: 5673799869017173958}
 --- !u!1 &6769692123129213054
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +294,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 85cac168e2f480d4c94f3281988de921, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

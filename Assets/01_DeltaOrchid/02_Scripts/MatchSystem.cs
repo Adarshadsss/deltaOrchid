@@ -31,14 +31,16 @@ public class MatchSystem : MonoBehaviour
             flippedCards[0].SetMatched();
             flippedCards[1].SetMatched();
 
-           
+            ScoreManager.Instance.AddMatchScore();
+            AudioManager.Instance.PlayMatch();
         }
         else
         {
             flippedCards[0].FlipBack();
             flippedCards[1].FlipBack();
 
-          
+            ScoreManager.Instance.AddMatchScore();
+            AudioManager.Instance.PlayMismatch();
         }
 
         flippedCards.Clear();

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
+    [SerializeField] List<Sprite> cardSprites;
+
     public GameObject cardPrefab;
     public Transform gridParent;
 
@@ -25,7 +27,13 @@ public class GridManager : MonoBehaviour
         foreach (int id in ids)
         {
             GameObject card = Instantiate(cardPrefab, gridParent);
-            card.GetComponent<CardController>().cardID = id;
+
+            CardController controller = card.GetComponent<CardController>();
+
+            controller.cardID = id;
+
+            // Assign sprite based on card ID
+            controller.SetSprite(cardSprites[id]);
         }
     }
 
