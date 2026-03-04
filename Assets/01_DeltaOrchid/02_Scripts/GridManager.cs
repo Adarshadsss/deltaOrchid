@@ -12,10 +12,6 @@ public class GridManager : MonoBehaviour
     public int rows = 4;
     public int columns = 4;
 
-    void Start()
-    {
-    }
-
    public void GenerateGrid()
     {
         int totalCards = rows * columns;

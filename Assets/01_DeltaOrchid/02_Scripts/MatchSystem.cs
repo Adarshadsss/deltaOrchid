@@ -8,7 +8,8 @@ public class MatchSystem : MonoBehaviour
     public static MatchSystem Instance;
 
     List<CardController> flippedCards = new List<CardController>();
-
+    public GameObject Gameoverpanel;
+    public GameObject GamePanel;
     void Awake()
     {
         Instance = this;

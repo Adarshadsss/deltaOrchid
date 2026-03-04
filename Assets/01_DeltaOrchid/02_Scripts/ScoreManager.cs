@@ -20,6 +20,7 @@ public class ScoreManager : MonoBehaviour
     {
         score = 0;
         moves = 10;
+        UpdateUI();
     }
     public void AddMatchScore()
     {
@@ -50,6 +51,8 @@ public class ScoreManager : MonoBehaviour
         if (moves == 0)
         {
             AudioManager.Instance.PlayGameOver();
+            MatchSystem.Instance.GamePanel.SetActive(false);
+            MatchSystem.Instance.Gameoverpanel.SetActive(true);
         }
         UpdateUI();
     }
