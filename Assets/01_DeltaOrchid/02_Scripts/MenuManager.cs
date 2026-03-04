@@ -10,6 +10,27 @@ public class MenuManager : MonoBehaviour
 
     public GridManager gridManager;
 
+
+    public void Easy()
+    {
+        StartGame(2, 2);
+    }
+
+    public void Medium()
+    {
+        StartGame(2, 3);
+    }
+
+    public void Hard()
+    {
+        StartGame(4, 4);
+    }
+
+    public void Expert()
+    {
+        StartGame(5, 6);
+    }
+
     public void StartGame(int rows, int columns)
     {
         mainMenuPanel.SetActive(false);
@@ -18,4 +39,6 @@ public class MenuManager : MonoBehaviour
         gridManager.SetGridSize(rows, columns);
         gridManager.GenerateGrid();
     }
+
+   
 }
