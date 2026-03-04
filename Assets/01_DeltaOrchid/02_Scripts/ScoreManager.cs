@@ -1,6 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
