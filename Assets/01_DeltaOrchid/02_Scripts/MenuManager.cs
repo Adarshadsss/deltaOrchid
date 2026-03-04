@@ -37,7 +37,7 @@ public class MenuManager : MonoBehaviour
         gamePanel.SetActive(true);
 
         gridManager.SetGridSize(rows, columns);
-        gridManager.GenerateGrid();
+        //gridManager.GenerateGrid();
     }
 
    

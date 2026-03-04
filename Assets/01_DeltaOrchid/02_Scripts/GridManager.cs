@@ -14,7 +14,6 @@ public class GridManager : MonoBehaviour
 
     void Start()
     {
-        GenerateGrid();
     }
 
    public void GenerateGrid()
@@ -40,6 +39,8 @@ public class GridManager : MonoBehaviour
     {
         rows = r;
         columns = c;
+        GenerateGrid();
+
     }
     List<int> CreatePairs(int total)
     {
