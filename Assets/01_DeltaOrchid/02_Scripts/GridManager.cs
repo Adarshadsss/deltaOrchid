@@ -64,4 +64,12 @@ public class GridManager : MonoBehaviour
             list[rand] = temp;
         }
     }
+
+    public void DestroyAllChilds()
+    {
+        foreach (Transform child in gridParent)
+        {
+            DestroyImmediate(child);
+        }
+    }
 }

@@ -10,7 +10,8 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] TMP_Text scoreTextGameOver;
     [SerializeField] TMP_Text movesText;
     [SerializeField] TMP_Text BestTextGameOver;
-    public SaveManager SaveManager;
+    public SaveManager _saveManager;
+    public GridManager _gridManager;
     int score;
     int moves;
     int combo;
@@ -56,15 +57,15 @@ public class ScoreManager : MonoBehaviour
 
             SaveData data = new SaveData();
             data._bestScore = score;
-            SaveManager.Save(data);
-
+            _saveManager.Save(data);
+            _gridManager.DestroyAllChilds();
             AudioManager.Instance.PlayGameOver();
             MatchSystem.Instance.GamePanel.SetActive(false);
             MatchSystem.Instance.Gameoverpanel.SetActive(true);
             scoreTextGameOver.text = score.ToString();
-            if (SaveManager.Load()._bestScore.ToString() != null)
+            if (_saveManager.Load()._bestScore.ToString() != null)
             {
-                BestTextGameOver.text = SaveManager.Load()._bestScore.ToString();
+                BestTextGameOver.text = _saveManager.Load()._bestScore.ToString();
             }
             else
             {
