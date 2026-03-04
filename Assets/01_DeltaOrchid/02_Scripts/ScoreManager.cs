@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
@@ -6,8 +7,10 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance;
 
     [SerializeField] TMP_Text scoreText;
+    [SerializeField] TMP_Text scoreTextGameOver;
     [SerializeField] TMP_Text movesText;
-
+    [SerializeField] TMP_Text BestTextGameOver;
+    public SaveManager SaveManager;
     int score;
     int moves;
     int combo;
@@ -50,9 +53,23 @@ public class ScoreManager : MonoBehaviour
         moves--;
         if (moves == 0)
         {
+
+            SaveData data = new SaveData();
+            data._bestScore = score;
+            SaveManager.Save(data);
+
             AudioManager.Instance.PlayGameOver();
             MatchSystem.Instance.GamePanel.SetActive(false);
             MatchSystem.Instance.Gameoverpanel.SetActive(true);
+            scoreTextGameOver.text = score.ToString();
+            if (SaveManager.Load()._bestScore.ToString() != null)
+            {
+                BestTextGameOver.text = SaveManager.Load()._bestScore.ToString();
+            }
+            else
+            {
+                BestTextGameOver.text = score.ToString();
+            }
         }
         UpdateUI();
     }
