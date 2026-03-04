@@ -69,7 +69,7 @@ public class GridManager : MonoBehaviour
     {
         foreach (Transform child in gridParent)
         {
-            DestroyImmediate(child);
+            Destroy(child.gameObject);
         }
     }
 }

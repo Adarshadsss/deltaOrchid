@@ -9,6 +9,7 @@ public class MenuManager : MonoBehaviour
     public GameObject gamePanel;
 
     public GridManager gridManager;
+    public ScoreManager _scoremnager;
 
 
     public void Easy()
@@ -37,6 +38,7 @@ public class MenuManager : MonoBehaviour
         gamePanel.SetActive(true);
 
         gridManager.SetGridSize(rows, columns);
+        _scoremnager.Restartinggame();
     }
 
    

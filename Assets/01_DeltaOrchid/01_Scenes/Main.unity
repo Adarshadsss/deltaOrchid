@@ -3364,6 +3364,7 @@ MonoBehaviour:
   mainMenuPanel: {fileID: 1077515606}
   gamePanel: {fileID: 397857933}
   gridManager: {fileID: 1826466188}
+  _scoremnager: {fileID: 1176426779}
 --- !u!4 &2101206096
 Transform:
   m_ObjectHideFlags: 0

@@ -20,7 +20,9 @@ public class ScoreManager : MonoBehaviour
     {
         Instance = this;
     }
-    private void Start()
+  
+
+    public void Restartinggame()
     {
         score = 0;
         moves = 10;
