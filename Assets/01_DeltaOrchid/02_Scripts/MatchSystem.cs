@@ -25,7 +25,7 @@ public class MatchSystem : MonoBehaviour
     IEnumerator CheckMatch()
     {
         yield return new WaitForSeconds(0.5f);
-
+        ScoreManager.Instance.AddMove();
         if (flippedCards[0].cardID == flippedCards[1].cardID)
         {
             flippedCards[0].SetMatched();
@@ -39,7 +39,7 @@ public class MatchSystem : MonoBehaviour
             flippedCards[0].FlipBack();
             flippedCards[1].FlipBack();
 
-            ScoreManager.Instance.AddMatchScore();
+            ScoreManager.Instance.AddMismatchPenalty();
             AudioManager.Instance.PlayMismatch();
         }
 

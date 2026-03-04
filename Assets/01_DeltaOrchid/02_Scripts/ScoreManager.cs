@@ -1,5 +1,5 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -16,7 +16,11 @@ public class ScoreManager : MonoBehaviour
     {
         Instance = this;
     }
-
+    private void Start()
+    {
+        score = 0;
+        moves = 10;
+    }
     public void AddMatchScore()
     {
         combo++;
@@ -31,16 +35,22 @@ public class ScoreManager : MonoBehaviour
     public void AddMismatchPenalty()
     {
         combo = 0;
+        if (score != 0)
+        {
+            score -= 10;
 
-        score -= 10;
+        }
 
         UpdateUI();
     }
 
     public void AddMove()
     {
-        moves++;
-
+        moves--;
+        if (moves == 0)
+        {
+            AudioManager.Instance.PlayGameOver();
+        }
         UpdateUI();
     }
 
