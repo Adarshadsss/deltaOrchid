@@ -17,7 +17,7 @@ public class GridManager : MonoBehaviour
         GenerateGrid();
     }
 
-    void GenerateGrid()
+   public void GenerateGrid()
     {
         int totalCards = rows * columns;
 
@@ -36,7 +36,11 @@ public class GridManager : MonoBehaviour
             controller.SetSprite(cardSprites[id]);
         }
     }
-
+    public void SetGridSize(int r, int c)
+    {
+        rows = r;
+        columns = c;
+    }
     List<int> CreatePairs(int total)
     {
         List<int> ids = new List<int>();
