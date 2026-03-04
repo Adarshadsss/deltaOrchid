@@ -8,25 +8,25 @@ public class MatchSystem : MonoBehaviour
 
     List<CardController> flippedCards = new List<CardController>();
 
-    public GameObject Gameoverpanel;
+    public GameObject Gameendpanel;
     public GameObject GamePanel;
 
-    int matchedPairs = 0;
-    int totalPairs;
+   public int matchedPairs = 0;
+   public int totalPairs;
 
     bool checkingMatch = false;
-
+    public GridManager gridManager;
     void Awake()
     {
         Instance = this;
     }
 
-    void Start()
+    private void CountTotalcards()
     {
-        int totalCards = FindObjectsOfType<CardController>().Length;
+        int totalCards = gridManager._totalcards;
         totalPairs = totalCards / 2;
+        Debug.Log("totalPairs : " + totalPairs);
     }
-
     public void RegisterCard(CardController card)
     {
         if (checkingMatch) return;
@@ -55,10 +55,12 @@ public class MatchSystem : MonoBehaviour
             flippedCards[1].gameObject.SetActive(false);
 
             matchedPairs++;
+            Debug.Log("matchedPairs : " + matchedPairs);
 
             ScoreManager.Instance.AddMatchScore();
             AudioManager.Instance.PlayMatch();
-
+            CountTotalcards();
+            CheckGamewin();
         }
         else
         {
@@ -72,6 +74,9 @@ public class MatchSystem : MonoBehaviour
         flippedCards.Clear();
         checkingMatch = false;
     }
+    void CheckGamewin()
+    {
+        ScoreManager.Instance.gameEndLogic(1);
+    }
 
-   
 }

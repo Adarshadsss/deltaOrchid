@@ -11,12 +11,12 @@ public class GridManager : MonoBehaviour
 
     public int rows = 4;
     public int columns = 4;
-
+    public int _totalcards;
    public void GenerateGrid()
     {
-        int totalCards = rows * columns;
+         _totalcards = rows * columns;
 
-        List<int> ids = CreatePairs(totalCards);
+        List<int> ids = CreatePairs(_totalcards);
         Shuffle(ids);
 
         foreach (int id in ids)

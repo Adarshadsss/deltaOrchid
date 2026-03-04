@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 460596574}
   - component: {fileID: 460596573}
   m_Layer: 5
-  m_Name: GameOver
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -862,8 +862,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8652a4e3fd32539449bbc38cc924ccbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gameoverpanel: {fileID: 766758763}
+  Gameendpanel: {fileID: 766758763}
   GamePanel: {fileID: 397857933}
+  matchedPairs: 0
+  totalPairs: 0
+  gridManager: {fileID: 1826466188}
 --- !u!1 &511741766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,7 +1250,7 @@ GameObject:
   - component: {fileID: 551815657}
   - component: {fileID: 551815656}
   m_Layer: 5
-  m_Name: Button
+  m_Name: HomeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1707,8 +1710,9 @@ GameObject:
   - component: {fileID: 766758764}
   - component: {fileID: 766758766}
   - component: {fileID: 766758765}
+  - component: {fileID: 766758767}
   m_Layer: 5
-  m_Name: GameOverPanel
+  m_Name: GameEndPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1775,6 +1779,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 766758763}
   m_CullTransparentMesh: 1
+--- !u!114 &766758767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 766758763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2b305b60fd770448a83e694cbe3edf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _winsprite: {fileID: 21300000, guid: 2304b9047d1330e4bb4071cd73bbadba, type: 3}
+  _lostsprite: {fileID: 21300000, guid: 822b46a01d7c1a54d95bb2788305bb7e, type: 3}
+  _image: {fileID: 460596573}
 --- !u!1 &820021426
 GameObject:
   m_ObjectHideFlags: 0
@@ -2408,6 +2427,7 @@ MonoBehaviour:
   matchSound: {fileID: 8300000, guid: bbfca8927c5ac6440801c4564b63622a, type: 3}
   mismatchSound: {fileID: 8300000, guid: 3bda3223cee9f384992608895d231383, type: 3}
   gameOverSound: {fileID: 8300000, guid: afe1d3cff0758ae40b7caf9c374b147d, type: 3}
+  gamewin: {fileID: 8300000, guid: 5df12d8da47ed304ab88c8918bb30e22, type: 3}
 --- !u!1 &1176426777
 GameObject:
   m_ObjectHideFlags: 0
@@ -3332,6 +3352,7 @@ MonoBehaviour:
   gridParent: {fileID: 1643327904}
   rows: 2
   columns: 2
+  _totalcards: 0
 --- !u!1 &2101206094
 GameObject:
   m_ObjectHideFlags: 0

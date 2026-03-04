@@ -1,5 +1,6 @@
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
@@ -26,6 +27,8 @@ public class ScoreManager : MonoBehaviour
     {
         score = 0;
         moves = 10;
+        MatchSystem.Instance.matchedPairs = 0;
+        MatchSystem.Instance.totalPairs = 0;
         UpdateUI();
     }
     public void AddMatchScore()
@@ -56,23 +59,8 @@ public class ScoreManager : MonoBehaviour
         moves--;
         if (moves == 0)
         {
+            gameEndLogic(0);
 
-            SaveData data = new SaveData();
-            data._bestScore = score;
-            _saveManager.Save(data);
-            _gridManager.DestroyAllChilds();
-            AudioManager.Instance.PlayGameOver();
-            MatchSystem.Instance.GamePanel.SetActive(false);
-            MatchSystem.Instance.Gameoverpanel.SetActive(true);
-            scoreTextGameOver.text = score.ToString();
-            if (_saveManager.Load()._bestScore.ToString() != null)
-            {
-                BestTextGameOver.text = _saveManager.Load()._bestScore.ToString();
-            }
-            else
-            {
-                BestTextGameOver.text = score.ToString();
-            }
         }
         UpdateUI();
     }
@@ -89,5 +77,51 @@ public class ScoreManager : MonoBehaviour
     public int GetScore()
     {
         return score;
+    }
+
+
+    public void gameEndLogic(int level)
+    {
+        SaveData data = _saveManager.Load();
+
+        if (data == null)
+        {
+            data = new SaveData();
+            data._bestScore = score;
+        }
+        else
+        {
+            if (score > data._bestScore)
+            {
+                data._bestScore = score;
+            }
+        }
+
+        _saveManager.Save(data);
+
+        scoreTextGameOver.text = score.ToString();
+        BestTextGameOver.text = data._bestScore.ToString();
+
+        if (level == 0)
+        {
+            _gridManager.DestroyAllChilds();
+            AudioManager.Instance.PlayGameOver();
+            MatchSystem.Instance.GamePanel.SetActive(false);
+            MatchSystem.Instance.Gameendpanel.SetActive(true);
+            MatchSystem.Instance.Gameendpanel.GetComponent<ChangeImages>().ChangeGameLostImage();
+
+        }
+        else if (level == 1)
+        {
+            if (MatchSystem.Instance.matchedPairs >= MatchSystem.Instance.totalPairs)
+            {
+                AudioManager.Instance.PlayGamewin();
+                MatchSystem.Instance.GamePanel.SetActive(false);
+                MatchSystem.Instance.Gameendpanel.SetActive(true);
+                MatchSystem.Instance.Gameendpanel.GetComponent<ChangeImages>().ChangeGamewinImage();
+            }
+        }
+
+       
     }
 }
