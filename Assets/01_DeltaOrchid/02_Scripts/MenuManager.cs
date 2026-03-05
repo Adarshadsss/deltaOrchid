@@ -5,13 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public GameObject mainMenuPanel;
-    public GameObject gamePanel;
-
-    public GridManager gridManager;
-    public ScoreManager _scoremnager;
-
-
     public void Easy()
     {
         StartGame(2, 2);
@@ -34,11 +27,11 @@ public class MenuManager : MonoBehaviour
 
     public void StartGame(int rows, int columns)
     {
-        mainMenuPanel.SetActive(false);
-        gamePanel.SetActive(true);
+        GameManager.Instance._mainMenuPanel.SetActive(false);
+        GameManager.Instance._gamePanel.SetActive(true);
 
-        gridManager.SetGridSize(rows, columns);
-        _scoremnager.Restartinggame();
+        GameManager.Instance._gridManager.SetGridSize(rows, columns);
+        GameManager.Instance._scoreManager.Restartinggame();
     }
 
    

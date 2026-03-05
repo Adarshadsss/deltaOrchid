@@ -9,8 +9,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] TMP_Text scoreTextGameOver;
     [SerializeField] TMP_Text movesText;
     [SerializeField] TMP_Text BestTextGameOver;
-    public SaveManager _saveManager;
-    public GridManager _gridManager;
+   
     int score;
     int moves;
     int combo;
@@ -25,14 +24,14 @@ public class ScoreManager : MonoBehaviour
     {
         score = 0;
         moves = 10;
-        MatchSystem.Instance.matchedPairs = 0;
-        MatchSystem.Instance.totalPairs = 0;
+       GameManager.Instance.matchedPairs = 0;
+        GameManager.Instance.totalPairs = 0;
         UpdateUI();
     }
     public void AddMatchScore()
     {
         combo++;
-
+        moves++;
         int value = 100 * combo;
 
         score += value;
@@ -80,7 +79,7 @@ public class ScoreManager : MonoBehaviour
 
     public void gameEndLogic(int level)
     {
-        SaveData data = _saveManager.Load();
+        SaveData data =GameManager.Instance._saveManager.Load();
 
         if (data == null)
         {
@@ -95,29 +94,29 @@ public class ScoreManager : MonoBehaviour
             }
         }
 
-        _saveManager.Save(data);
+        GameManager.Instance._saveManager.Save(data);
 
         scoreTextGameOver.text = score.ToString();
         BestTextGameOver.text = data._bestScore.ToString();
 
         if (level == 0)
         {
-            _gridManager.DestroyAllChilds();
+           GameManager.Instance._gridManager.DestroyAllChilds();
             AudioManager.Instance.PlayGameOver();
-            MatchSystem.Instance.GamePanel.SetActive(false);
-            MatchSystem.Instance.Gameendpanel.SetActive(true);
-            MatchSystem.Instance.Gameendpanel.GetComponent<ChangeImages>().ChangeGameLostImage();
+            GameManager.Instance._gamePanel.SetActive(false);
+            GameManager.Instance._Gameendpanel.SetActive(true);
+            GameManager.Instance._Gameendpanel.GetComponent<ChangeImages>().ChangeGameLostImage();
 
         }
         else if (level == 1)
         {
-            if (MatchSystem.Instance.matchedPairs >= MatchSystem.Instance.totalPairs)
+            if (GameManager.Instance.matchedPairs >= GameManager.Instance.totalPairs)
             {
-                _gridManager.DestroyAllChilds();
+                GameManager.Instance._gridManager.DestroyAllChilds();
                 AudioManager.Instance.PlayGamewin();
-                MatchSystem.Instance.GamePanel.SetActive(false);
-                MatchSystem.Instance.Gameendpanel.SetActive(true);
-                MatchSystem.Instance.Gameendpanel.GetComponent<ChangeImages>().ChangeGamewinImage();
+                GameManager.Instance._gamePanel.SetActive(false);
+                GameManager.Instance._Gameendpanel.SetActive(true);
+                GameManager.Instance._Gameendpanel.GetComponent<ChangeImages>().ChangeGamewinImage();
             }
         }
 

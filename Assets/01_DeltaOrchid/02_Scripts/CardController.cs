@@ -28,7 +28,7 @@ public class CardController : MonoBehaviour
 
         StartCoroutine(FlipCard(true));
 
-        MatchSystem.Instance.RegisterCard(this);
+        GameManager.Instance._matchSystem.RegisterCard(this);
     }
 
     public void FlipBack()

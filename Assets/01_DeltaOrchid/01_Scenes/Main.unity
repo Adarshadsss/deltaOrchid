@@ -538,7 +538,7 @@ GameObject:
   - component: {fileID: 397857936}
   - component: {fileID: 397857935}
   m_Layer: 5
-  m_Name: gamePanel
+  m_Name: GamePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -848,7 +848,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &505798084
 MonoBehaviour:
@@ -862,11 +862,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8652a4e3fd32539449bbc38cc924ccbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gameendpanel: {fileID: 766758763}
-  GamePanel: {fileID: 397857933}
-  matchedPairs: 0
-  totalPairs: 0
-  gridManager: {fileID: 1826466188}
 --- !u!1 &511741766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1013,6 +1008,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 523609718}
+  - component: {fileID: 523609719}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1033,8 +1029,32 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &523609719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523609717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ead4a8670ab7e4d808f8d65ef2296d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gridManager: {fileID: 1826466188}
+  _scoreManager: {fileID: 1176426779}
+  _saveManager: {fileID: 1550720452}
+  _audiomanager: {fileID: 1109115754}
+  _matchSystem: {fileID: 505798084}
+  _mainMenuPanel: {fileID: 1077515606}
+  _gamePanel: {fileID: 397857933}
+  _Gameendpanel: {fileID: 766758763}
+  matchedPairs: 0
+  totalPairs: 0
+  cardPrefab: {fileID: 802517262805117752, guid: c1d7b07c4e1dcea42aab5d59e886d5ed, type: 3}
+  gridParent: {fileID: 1643327904}
 --- !u!1 &523676245
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,7 +1255,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &551815654
 GameObject:
@@ -2312,7 +2332,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1109115753
 AudioSource:
@@ -2458,7 +2478,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1176426779
 MonoBehaviour:
@@ -2476,8 +2496,6 @@ MonoBehaviour:
   scoreTextGameOver: {fileID: 203097936}
   movesText: {fileID: 1479288014}
   BestTextGameOver: {fileID: 1720102127}
-  _saveManager: {fileID: 1550720452}
-  _gridManager: {fileID: 1826466188}
 --- !u!1 &1223524486
 GameObject:
   m_ObjectHideFlags: 0
@@ -2592,7 +2610,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2805,7 +2823,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1550720452
 MonoBehaviour:
@@ -3102,7 +3120,7 @@ GameObject:
   - component: {fileID: 1643327904}
   - component: {fileID: 1643327905}
   m_Layer: 5
-  m_Name: GameBoard
+  m_Name: GridParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3317,7 +3335,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1826466188
 MonoBehaviour:
@@ -3348,8 +3366,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2a27a69a25fbcf64e9cbea4176eea1c9, type: 3}
   - {fileID: 21300000, guid: 99072697d6b060d45b1bebb360a065c2, type: 3}
   - {fileID: 21300000, guid: fb6a3e0c570a89f49960beaff6d527a4, type: 3}
-  cardPrefab: {fileID: 802517262805117752, guid: c1d7b07c4e1dcea42aab5d59e886d5ed, type: 3}
-  gridParent: {fileID: 1643327904}
   rows: 2
   columns: 2
   _totalcards: 0
@@ -3382,10 +3398,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 148086c77c9357d47bce38a09c953f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuPanel: {fileID: 1077515606}
-  gamePanel: {fileID: 397857933}
-  gridManager: {fileID: 1826466188}
-  _scoremnager: {fileID: 1176426779}
 --- !u!4 &2101206096
 Transform:
   m_ObjectHideFlags: 0
@@ -3399,7 +3411,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2129298688
 GameObject:

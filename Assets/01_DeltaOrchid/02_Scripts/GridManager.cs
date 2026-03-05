@@ -7,8 +7,7 @@ public class GridManager : MonoBehaviour
 {
     [SerializeField] List<Sprite> cardSprites;
 
-    public GameObject cardPrefab;
-    public Transform gridParent;
+   
 
     public int rows = 4;
     public int columns = 4;
@@ -16,7 +15,7 @@ public class GridManager : MonoBehaviour
     public void GenerateGrid()
     {
 
-        gridParent.GetComponent<GridLayoutGroup>().enabled = true;
+        GameManager.Instance.gridParent.GetComponent<GridLayoutGroup>().enabled = true;
 
         _totalcards = rows * columns;
 
@@ -27,7 +26,7 @@ public class GridManager : MonoBehaviour
 
         foreach (int id in ids)
         {
-            GameObject card = Instantiate(cardPrefab, gridParent);
+            GameObject card = Instantiate(GameManager.Instance.cardPrefab, GameManager.Instance.gridParent);
 
             CardController controller = card.GetComponent<CardController>();
 
@@ -49,7 +48,7 @@ public class GridManager : MonoBehaviour
 
         foreach (var card in cards)
             card.FlipBack();
-        gridParent.GetComponent<GridLayoutGroup>().enabled = false;
+        GameManager.Instance.gridParent.GetComponent<GridLayoutGroup>().enabled = false;
     }
 
 
@@ -89,7 +88,7 @@ public class GridManager : MonoBehaviour
 
     public void DestroyAllChilds()
     {
-        foreach (Transform child in gridParent)
+        foreach (Transform child in GameManager.Instance.gridParent)
         {
             Destroy(child.gameObject);
         }

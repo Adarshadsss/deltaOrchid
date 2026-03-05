@@ -4,28 +4,15 @@ using UnityEngine;
 
 public class MatchSystem : MonoBehaviour
 {
-    public static MatchSystem Instance;
-
     List<CardController> flippedCards = new List<CardController>();
-
-    public GameObject Gameendpanel;
-    public GameObject GamePanel;
-
-   public int matchedPairs = 0;
-   public int totalPairs;
-
     bool checkingMatch = false;
-    public GridManager gridManager;
-    void Awake()
-    {
-        Instance = this;
-    }
+
 
     private void CountTotalcards()
     {
-        int totalCards = gridManager._totalcards;
-        totalPairs = totalCards / 2;
-        Debug.Log("totalPairs : " + totalPairs);
+        int totalCards =GameManager.Instance._gridManager._totalcards;
+        GameManager.Instance.totalPairs = totalCards / 2;
+        Debug.Log("totalPairs : " + GameManager.Instance.totalPairs);
     }
     public void RegisterCard(CardController card)
     {
@@ -54,11 +41,11 @@ public class MatchSystem : MonoBehaviour
             flippedCards[0].gameObject.SetActive(false);
             flippedCards[1].gameObject.SetActive(false);
 
-            matchedPairs++;
-            Debug.Log("matchedPairs : " + matchedPairs);
+            GameManager.Instance.matchedPairs++;
+            Debug.Log("matchedPairs : " + GameManager.Instance.matchedPairs);
 
-            ScoreManager.Instance.AddMatchScore();
-            AudioManager.Instance.PlayMatch();
+            GameManager.Instance._scoreManager.AddMatchScore();
+            GameManager.Instance._audiomanager.PlayMatch();
             CountTotalcards();
             CheckGamewin();
         }
@@ -67,8 +54,8 @@ public class MatchSystem : MonoBehaviour
             flippedCards[0].FlipBack();
             flippedCards[1].FlipBack();
 
-            ScoreManager.Instance.AddMismatchPenalty();
-            AudioManager.Instance.PlayMismatch();
+            GameManager.Instance._scoreManager.AddMismatchPenalty();
+            GameManager.Instance._audiomanager.PlayMismatch();
         }
 
         flippedCards.Clear();
@@ -76,7 +63,7 @@ public class MatchSystem : MonoBehaviour
     }
     void CheckGamewin()
     {
-        ScoreManager.Instance.gameEndLogic(1);
+        GameManager.Instance._scoreManager.gameEndLogic(1);
     }
 
 }
