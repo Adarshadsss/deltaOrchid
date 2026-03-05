@@ -113,6 +113,7 @@ public class ScoreManager : MonoBehaviour
         {
             if (MatchSystem.Instance.matchedPairs >= MatchSystem.Instance.totalPairs)
             {
+                _gridManager.DestroyAllChilds();
                 AudioManager.Instance.PlayGamewin();
                 MatchSystem.Instance.GamePanel.SetActive(false);
                 MatchSystem.Instance.Gameendpanel.SetActive(true);

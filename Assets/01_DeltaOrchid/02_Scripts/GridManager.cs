@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GridManager : MonoBehaviour
 {
@@ -12,12 +13,17 @@ public class GridManager : MonoBehaviour
     public int rows = 4;
     public int columns = 4;
     public int _totalcards;
-   public void GenerateGrid()
+    public void GenerateGrid()
     {
-         _totalcards = rows * columns;
+
+        gridParent.GetComponent<GridLayoutGroup>().enabled = true;
+
+        _totalcards = rows * columns;
 
         List<int> ids = CreatePairs(_totalcards);
         Shuffle(ids);
+
+        List<CardController> cards = new List<CardController>();
 
         foreach (int id in ids)
         {
@@ -26,11 +32,27 @@ public class GridManager : MonoBehaviour
             CardController controller = card.GetComponent<CardController>();
 
             controller.cardID = id;
-
-            // Assign sprite based on card ID
             controller.SetSprite(cardSprites[id]);
+
+            cards.Add(controller);
         }
+
+        StartCoroutine(ShowCardsThenHide(cards));
     }
+
+    IEnumerator ShowCardsThenHide(List<CardController> cards)
+    {
+        foreach (var card in cards)
+            card.ShowFrontInstant();
+
+        yield return new WaitForSeconds(.2f);
+
+        foreach (var card in cards)
+            card.FlipBack();
+        gridParent.GetComponent<GridLayoutGroup>().enabled = false;
+    }
+
+
     public void SetGridSize(int r, int c)
     {
         rows = r;
